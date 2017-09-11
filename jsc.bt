@@ -1,0 +1,2241 @@
+//------------------------------------------------
+//--- 010 Editor v7.0 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+LittleEndian();
+
+typedef struct {
+    int magic;
+} jsc_magic <read=DexMagicRead>;
+
+string DexMagicRead(jsc_magic &m) {
+    string s;
+    SPrintf(s, "%x", m.magic);
+    return s;
+}
+typedef struct {
+    ubyte opcode;
+    
+
+}instrument <optimize=false>;
+
+
+typedef struct{
+    
+    int atomNameLength;
+    local int tmp =atomNameLength>>1;
+    //Printf("tmp %d %d\n",tmp,tmp&0x1);
+    if((atomNameLength&0x1)==0)
+    {
+        char atomName[tmp*2];
+    }else
+    {
+        char atomName[tmp];
+    }
+    
+
+
+} atom <optimize=false,read=AtomRead>;
+string AtomRead(atom &m)
+{
+    local string s="";
+    if(m.atomNameLength>1)
+    {
+        s=m.atomName;
+    }
+
+    return s;
+}
+
+
+enum XDRClassKind {
+    CK_BlockObject = 0,
+    CK_WithObject  = 1,
+    CK_JSFunction  = 2,
+    CK_JSObject    = 3
+};
+
+
+enum ConstTag {
+        SCRIPT_INT     = 0,
+        SCRIPT_DOUBLE  = 1,
+        SCRIPT_ATOM    = 2,
+        SCRIPT_TRUE    = 3,
+        SCRIPT_FALSE   = 4,
+        SCRIPT_NULL    = 5,
+        SCRIPT_OBJECT  = 6,
+        SCRIPT_VOID    = 7,
+        SCRIPT_HOLE    = 8
+    };
+
+typedef struct{
+    
+    int type;
+    switch( type ) 
+    {
+        case SCRIPT_DOUBLE  : double val; break;
+      
+    }
+} _const <optimize=false>;
+
+typedef struct 
+{
+    ubyte kind;
+    int stackDepth;
+    int start;
+    int length;
+}trynote;
+
+typedef struct
+{
+    atom regexp;
+    int RegExpFlag;
+    
+}RegExp<optimize=false>;
+
+
+
+enum OPCODE {
+        JSOP_GETLOCAL      = 0x56,
+JSOP_LAMBDA  =0x82,
+     
+    };
+
+
+
+typedef struct (ubyte _opcode)
+{
+    BigEndian();
+    ubyte opcode;
+    local int size =0;
+    switch(opcode)
+    {
+//JSOP_AND 
+            case 69:
+                {
+        int32 offset;
+        break;
+        }
+            
+//JSOP_BACKPATCH 
+            case 149:
+                {
+        int32 offset;
+        break;
+        }
+            
+//JSOP_GOTO 
+            case 6:
+                {
+        int32 offset;
+        break;
+        }
+            
+//JSOP_IFEQ 
+            case 7:
+                {
+        int32 offset;
+        break;
+        }
+            
+//JSOP_IFNE 
+            case 8:
+                {
+        int32 offset;
+        break;
+        }
+            
+//JSOP_LABEL 
+            case 106:
+                {
+        int32 offset;
+        break;
+        }
+            
+//JSOP_LOOPENTRY 
+            case 227:
+                {
+        ubyte BITFIELD;
+        break;
+        }
+            
+//JSOP_LOOPHEAD 
+            case 109:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_OR 
+            case 68:
+                {
+        int32 offset;
+        break;
+        }
+            
+//JSOP_CASE 
+            case 121:
+                {
+        int32 offset;
+        break;
+        }
+            
+//JSOP_CONDSWITCH 
+            case 120:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_DEFAULT 
+            case 122:
+                {
+        int32 offset;
+        break;
+        }
+            
+//JSOPABLESWITCH 
+            case 70:
+                {
+            int32 len;
+            ubyte othre[len];
+        break;
+        }
+            
+//JSOP_ENDITER 
+            case 78:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_ITER 
+            case 75:
+                {
+        ubyte flags;
+        break;
+        }
+            
+//JSOP_ITERNEXT 
+            case 77:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_MOREITER 
+            case 76:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_ENTERWITH 
+            case 3:
+                {
+        uint32 staticWithIndex;
+        break;
+        }
+            
+//JSOP_LEAVEWITH 
+            case 4:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_EXCEPTION 
+            case 118:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_FINALLY 
+            case 135:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_GOSUB 
+            case 116:
+                {
+        int32 offset;
+        break;
+        }
+            
+//JSOP_RETSUB 
+            case 117:
+                {
+        ;
+        break;
+        }
+            
+//JSOPHROW 
+            case 112:
+                {
+        ;
+        break;
+        }
+            
+//JSOPHROWING 
+            case 151:
+                {
+        ;
+        break;
+        }
+            
+//JSOPRY 
+            case 134:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_CALL 
+            case 58:
+                {
+        uint16 argc;
+        break;
+        }
+            
+//JSOP_EVAL 
+            case 123:
+                {
+        uint16 argc;
+        break;
+        }
+            
+//JSOP_FUNAPPLY 
+            case 79:
+                {
+        uint16 argc;
+        break;
+        }
+            
+//JSOP_FUNCALL 
+            case 108:
+                {
+        uint16 argc;
+        break;
+        }
+            
+//JSOP_LAMBDA 
+            case 130:
+                {
+        uint32 funcIndex;
+        break;
+        }
+            
+//JSOP_LAMBDA_ARROW 
+            case 131:
+                {
+        uint32 funcIndex;
+        break;
+        }
+            
+//JSOP_NEW 
+            case 82:
+                {
+        uint16 argc;
+        break;
+        }
+            
+//JSOP_RETRVAL 
+            case 153:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_RETURN 
+            case 5:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_RUNONCE 
+            case 71:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_SETCALL 
+            case 74:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_SETRVAL 
+            case 152:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_SPREADCALL 
+            case 41:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_SPREADEVAL 
+            case 43:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_SPREADNEW 
+            case 42:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_GENERATOR 
+            case 202:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_YIELD 
+            case 203:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_DEBUGGER 
+            case 115:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_DEBUGLEAVEBLOCK 
+            case 200:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_BINDNAME 
+            case 110:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_DEFCONST 
+            case 128:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_DEFFUN 
+            case 127:
+                {
+        uint32 funcIndex;
+        break;
+        }
+            
+//JSOP_DEFVAR 
+            case 129:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_DELNAME 
+            case 36:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_NAME 
+            case 59:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_SETCONST 
+            case 14:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_SETNAME 
+            case 111:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_BINDGNAME 
+            case 214:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_GETGNAME 
+            case 154:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_SETGNAME 
+            case 155:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_GETLOCAL 
+            case 86:
+                {
+        ubyte localno[3];
+        break;
+        }
+            
+//JSOP_SETLOCAL 
+            case 87:
+                {
+        uint32 localno;
+        break;
+        }
+            
+//JSOP_GETALIASEDVAR 
+            case 136:
+                {
+        ubyte hops;
+        ubyte slot[3];
+        break;
+        }
+            
+//JSOP_SETALIASEDVAR 
+            case 137:
+                {
+        ubyte hops;
+        ubyte slot[3];
+        break;
+        }
+            
+//JSOP_BINDINTRINSIC 
+            case 145:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_GETINTRINSIC 
+            case 143:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_SETINTRINSIC 
+            case 144:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_POPBLOCKSCOPE 
+            case 199:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_PUSHBLOCKSCOPE 
+            case 198:
+                {
+        uint32 staticBlockObjectIndex;
+        break;
+        }
+            
+//JSOP_IMPLICITTHIS 
+            case 226:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOPHIS 
+            case 65:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_ARGUMENTS 
+            case 9:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_CALLEE 
+            case 132:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_GETARG 
+            case 84:
+                {
+        uint16 argno;
+        break;
+        }
+            
+//JSOP_REST 
+            case 224:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_SETARG 
+            case 85:
+                {
+        uint16 argno;
+        break;
+        }
+            
+//JSOP_NE 
+            case 19:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_LT 
+            case 20:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_LE 
+            case 21:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_GT 
+            case 22:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_GE 
+            case 23:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_STRICTNE 
+            case 73:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_ADD 
+            case 27:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_MUL 
+            case 29:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_DIV 
+            case 30:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_MOD 
+            case 31:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_NEG 
+            case 34:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_POS 
+            case 35:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_BITXOR 
+            case 16:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_BITAND 
+            case 17:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_BITNOT 
+            case 33:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_RSH 
+            case 25:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_URSH 
+            case 26:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_NOT 
+            case 32:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_IN 
+            case 113:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_INSTANCEOF 
+            case 114:
+                {
+        ;
+        break;
+        }
+            
+//JSOPYPEOF 
+            case 39:
+                {
+        ;
+        break;
+        }
+            
+//JSOPYPEOFEXPR 
+            case 197:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_VOID 
+            case 40:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_DUP 
+            case 12:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_DUP2 
+            case 13:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_DUPAT 
+            case 44:
+                {
+        ubyte n[3];
+        break;
+        }
+            
+//JSOP_PICK 
+            case 133:
+                {
+        ubyte n;
+        break;
+        }
+            
+//JSOP_POP 
+            case 81:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_POPN 
+            case 11:
+                {
+        uint16 n;
+        break;
+        }
+            
+//JSOP_SWAP 
+            case 10:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_DOUBLE 
+            case 60:
+                {
+        uint32 constIndex;
+        break;
+        }
+            
+//JSOPRUE 
+            case 67:
+                {
+            ;
+            break;
+            }
+            
+//JSOP_INT32 
+            case 216:
+                {
+        int32 val;
+        break;
+        }
+            
+//JSOP_INT8 
+            case 215:
+                {
+        ubyte val;
+        break;
+        }
+            
+//JSOP_NULL 
+            case 64:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_ONE 
+            case 63:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_STRING 
+            case 61:
+                {
+        uint32 atomIndex;
+        break;
+        }
+            
+//JSOP_UINT16 
+            case 88:
+                {
+        uint16 val;
+        break;
+        }
+            
+//JSOP_UINT24 
+            case 188:
+                {
+        ubyte val[3];
+        break;
+        }
+            
+//JSOP_UNDEFINED 
+            case 1:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_ZERO 
+            case 62:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_CALLELEM 
+            case 193:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_CALLPROP 
+            case 184:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_DELELEM 
+            case 38:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_DELPROP 
+            case 37:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_ENDINIT 
+            case 92:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_GETELEM 
+            case 55:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_GETPROP 
+            case 53:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_GETXPROP 
+            case 195:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_INITELEM 
+            case 94:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_INITELEM_GETTER 
+            case 99:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_INITELEM_SETTER 
+            case 100:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_INITPROP 
+            case 93:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_INITPROP_GETTER 
+            case 97:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_INITPROP_SETTER 
+            case 98:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_MUTATEPROTO 
+            case 194:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_NEWINIT 
+            case 89:
+                {
+        ubyte kind ;
+    ubyte extra[3];
+        break;
+        }
+            
+//JSOP_NEWOBJECT 
+            case 91:
+                {
+        uint32 baseobjIndex;
+        break;
+        }
+            
+//JSOP_OBJECT 
+            case 80:
+                {
+        uint32 objectIndex;
+        break;
+        }
+            
+//JSOP_SETELEM 
+            case 56:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_SETPROP 
+            case 54:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOPOID 
+            case 225:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_ARRAYPUSH 
+            case 204:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_HOLE 
+            case 218:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_INITELEM_ARRAY 
+            case 96:
+                {
+        ubyte index[3];
+        break;
+        }
+            
+//JSOP_INITELEM_INC 
+            case 95:
+                {
+        ;
+        break;
+        }
+            
+//JSOP_LENGTH 
+            case 217:
+                {
+        uint32 nameIndex;
+        break;
+        }
+            
+//JSOP_NEWARRAY 
+            case 90:
+                {
+        ubyte length[3];
+        break;
+        }
+            
+//JSOP_REGEXP 
+            case 160:
+                {
+        uint32 regexpIndex;
+        break;
+        }
+            
+//JSOP_LINENO 
+            case 119:
+                {
+        uint32 lineno;
+        break;
+        }
+            
+//JSOP_NOP 
+            case 0:
+                {
+        ;
+        break;
+        }
+            
+//JSOPOSTRING 
+            case 228:
+                {
+        ;
+        break;
+        }
+            
+        default :
+        {
+            Printf("opcode %x can't find \n",opcode);
+        }
+
+    }
+
+    LittleEndian();
+
+    
+}JSOP <optimize=false,read =ReadJSOP>;
+
+
+string ReadJSOP(JSOP & m)
+{
+
+    switch( m.opcode ) 
+    {
+     //JSOP_AND 
+            case 69:
+                
+            return "JSOP_AND";
+        
+            
+//JSOP_BACKPATCH 
+            case 149:
+                
+            return "JSOP_BACKPATCH";
+        
+            
+//JSOP_GOTO 
+            case 6:
+                
+            return "JSOP_GOTO";
+        
+            
+//JSOP_IFEQ 
+            case 7:
+                
+            return "JSOP_IFEQ";
+        
+            
+//JSOP_IFNE 
+            case 8:
+                
+            return "JSOP_IFNE";
+        
+            
+//JSOP_LABEL 
+            case 106:
+                
+            return "JSOP_LABEL";
+        
+            
+//JSOP_LOOPENTRY 
+            case 227:
+                
+            return "JSOP_LOOPENTRY";
+        
+            
+//JSOP_LOOPHEAD 
+            case 109:
+                
+            return "JSOP_LOOPHEAD";
+        
+            
+//JSOP_OR 
+            case 68:
+                
+            return "JSOP_OR";
+        
+            
+//JSOP_CASE 
+            case 121:
+                
+            return "JSOP_CASE";
+        
+            
+//JSOP_CONDSWITCH 
+            case 120:
+                
+            return "JSOP_CONDSWITCH";
+        
+            
+//JSOP_DEFAULT 
+            case 122:
+                
+            return "JSOP_DEFAULT";
+        
+            
+//JSOP_TABLESWITCH 
+            case 70:
+                
+            return "JSOP_TABLESWITCH";
+        
+            
+//JSOP_ENDITER 
+            case 78:
+                
+            return "JSOP_ENDITER";
+        
+            
+//JSOP_ITER 
+            case 75:
+                
+            return "JSOP_ITER";
+        
+            
+//JSOP_ITERNEXT 
+            case 77:
+                
+            return "JSOP_ITERNEXT";
+        
+            
+//JSOP_MOREITER 
+            case 76:
+                
+            return "JSOP_MOREITER";
+        
+            
+//JSOP_ENTERWITH 
+            case 3:
+                
+            return "JSOP_ENTERWITH";
+        
+            
+//JSOP_LEAVEWITH 
+            case 4:
+                
+            return "JSOP_LEAVEWITH";
+        
+            
+//JSOP_EXCEPTION 
+            case 118:
+                
+            return "JSOP_EXCEPTION";
+        
+            
+//JSOP_FINALLY 
+            case 135:
+                
+            return "JSOP_FINALLY";
+        
+            
+//JSOP_GOSUB 
+            case 116:
+                
+            return "JSOP_GOSUB";
+        
+            
+//JSOP_RETSUB 
+            case 117:
+                
+            return "JSOP_RETSUB";
+        
+            
+//JSOP_THROW 
+            case 112:
+                
+            return "JSOP_THROW";
+        
+            
+//JSOP_THROWING 
+            case 151:
+                
+            return "JSOP_THROWING";
+        
+            
+//JSOP_TRY 
+            case 134:
+                
+            return "JSOP_TRY";
+        
+            
+//JSOP_CALL 
+            case 58:
+                
+            return "JSOP_CALL";
+        
+            
+//JSOP_EVAL 
+            case 123:
+                
+            return "JSOP_EVAL";
+        
+            
+//JSOP_FUNAPPLY 
+            case 79:
+                
+            return "JSOP_FUNAPPLY";
+        
+            
+//JSOP_FUNCALL 
+            case 108:
+                
+            return "JSOP_FUNCALL";
+        
+            
+//JSOP_LAMBDA 
+            case 130:
+                
+            return "JSOP_LAMBDA";
+        
+            
+//JSOP_LAMBDA_ARROW 
+            case 131:
+                
+            return "JSOP_LAMBDA_ARROW";
+        
+            
+//JSOP_NEW 
+            case 82:
+                
+            return "JSOP_NEW";
+        
+            
+//JSOP_RETRVAL 
+            case 153:
+                
+            return "JSOP_RETRVAL";
+        
+            
+//JSOP_RETURN 
+            case 5:
+                
+            return "JSOP_RETURN";
+        
+            
+//JSOP_RUNONCE 
+            case 71:
+                
+            return "JSOP_RUNONCE";
+        
+            
+//JSOP_SETCALL 
+            case 74:
+                
+            return "JSOP_SETCALL";
+        
+            
+//JSOP_SETRVAL 
+            case 152:
+                
+            return "JSOP_SETRVAL";
+        
+            
+//JSOP_SPREADCALL 
+            case 41:
+                
+            return "JSOP_SPREADCALL";
+        
+            
+//JSOP_SPREADEVAL 
+            case 43:
+                
+            return "JSOP_SPREADEVAL";
+        
+            
+//JSOP_SPREADNEW 
+            case 42:
+                
+            return "JSOP_SPREADNEW";
+        
+            
+//JSOP_GENERATOR 
+            case 202:
+                
+            return "JSOP_GENERATOR";
+        
+            
+//JSOP_YIELD 
+            case 203:
+                
+            return "JSOP_YIELD";
+        
+            
+//JSOP_DEBUGGER 
+            case 115:
+                
+            return "JSOP_DEBUGGER";
+        
+            
+//JSOP_DEBUGLEAVEBLOCK 
+            case 200:
+                
+            return "JSOP_DEBUGLEAVEBLOCK";
+        
+            
+//JSOP_BINDNAME 
+            case 110:
+                
+            return "JSOP_BINDNAME";
+        
+            
+//JSOP_DEFCONST 
+            case 128:
+                
+            return "JSOP_DEFCONST";
+        
+            
+//JSOP_DEFFUN 
+            case 127:
+                
+            return "JSOP_DEFFUN";
+        
+            
+//JSOP_DEFVAR 
+            case 129:
+                
+            return "JSOP_DEFVAR";
+        
+            
+//JSOP_DELNAME 
+            case 36:
+                
+            return "JSOP_DELNAME";
+        
+            
+//JSOP_NAME 
+            case 59:
+                
+            return "JSOP_NAME";
+        
+            
+//JSOP_SETCONST 
+            case 14:
+                
+            return "JSOP_SETCONST";
+        
+            
+//JSOP_SETNAME 
+            case 111:
+                
+            return "JSOP_SETNAME";
+        
+            
+//JSOP_BINDGNAME 
+            case 214:
+                
+            return "JSOP_BINDGNAME";
+        
+            
+//JSOP_GETGNAME 
+            case 154:
+                
+            return "JSOP_GETGNAME";
+        
+            
+//JSOP_SETGNAME 
+            case 155:
+                
+            return "JSOP_SETGNAME";
+        
+            
+//JSOP_GETLOCAL 
+            case 86:
+                
+            return "JSOP_GETLOCAL";
+        
+            
+//JSOP_SETLOCAL 
+            case 87:
+                
+            return "JSOP_SETLOCAL";
+        
+            
+//JSOP_GETALIASEDVAR 
+            case 136:
+                
+            return "JSOP_GETALIASEDVAR";
+        
+            
+//JSOP_SETALIASEDVAR 
+            case 137:
+                
+            return "JSOP_SETALIASEDVAR";
+        
+            
+//JSOP_BINDINTRINSIC 
+            case 145:
+                
+            return "JSOP_BINDINTRINSIC";
+        
+            
+//JSOP_GETINTRINSIC 
+            case 143:
+                
+            return "JSOP_GETINTRINSIC";
+        
+            
+//JSOP_SETINTRINSIC 
+            case 144:
+                
+            return "JSOP_SETINTRINSIC";
+        
+            
+//JSOP_POPBLOCKSCOPE 
+            case 199:
+                
+            return "JSOP_POPBLOCKSCOPE";
+        
+            
+//JSOP_PUSHBLOCKSCOPE 
+            case 198:
+                
+            return "JSOP_PUSHBLOCKSCOPE";
+        
+            
+//JSOP_IMPLICITTHIS 
+            case 226:
+                
+            return "JSOP_IMPLICITTHIS";
+        
+            
+//JSOP_THIS 
+            case 65:
+                
+            return "JSOP_THIS";
+        
+            
+//JSOP_ARGUMENTS 
+            case 9:
+                
+            return "JSOP_ARGUMENTS";
+        
+            
+//JSOP_CALLEE 
+            case 132:
+                
+            return "JSOP_CALLEE";
+        
+            
+//JSOP_GETARG 
+            case 84:
+                
+            return "JSOP_GETARG";
+        
+            
+//JSOP_REST 
+            case 224:
+                
+            return "JSOP_REST";
+        
+            
+//JSOP_SETARG 
+            case 85:
+                
+            return "JSOP_SETARG";
+        
+            
+//JSOP_NE 
+                case 19:
+                    
+            return "JSOP_NE";
+            
+                
+//JSOP_LT 
+                case 20:
+                    
+            return "JSOP_LT";
+            
+                
+//JSOP_LE 
+                case 21:
+                    
+            return "JSOP_LE";
+            
+                
+//JSOP_GT 
+                case 22:
+                    
+            return "JSOP_GT";
+            
+                
+//JSOP_GE 
+                case 23:
+                    
+            return "JSOP_GE";
+            
+                
+//JSOP_STRICTNE 
+                case 73:
+                    
+            return "JSOP_STRICTNE";
+            
+                
+//JSOP_ADD 
+            case 27:
+                
+            return "JSOP_ADD";
+        
+            
+//JSOP_MUL 
+                case 29:
+                    
+            return "JSOP_MUL";
+            
+                
+//JSOP_DIV 
+                case 30:
+                    
+            return "JSOP_DIV";
+            
+                
+//JSOP_MOD 
+                case 31:
+                    
+            return "JSOP_MOD";
+            
+                
+//JSOP_NEG 
+            case 34:
+                
+            return "JSOP_NEG";
+        
+            
+//JSOP_POS 
+            case 35:
+                
+            return "JSOP_POS";
+        
+            
+//JSOP_BITXOR 
+                case 16:
+                    
+            return "JSOP_BITXOR";
+            
+                
+//JSOP_BITAND 
+                case 17:
+                    
+            return "JSOP_BITAND";
+            
+                
+//JSOP_BITNOT 
+            case 33:
+                
+            return "JSOP_BITNOT";
+        
+            
+//JSOP_RSH 
+                case 25:
+                    
+            return "JSOP_RSH";
+            
+                
+//JSOP_URSH 
+            case 26:
+                
+            return "JSOP_URSH";
+        
+            
+//JSOP_NOT 
+            case 32:
+                
+            return "JSOP_NOT";
+        
+            
+//JSOP_IN 
+            case 113:
+                
+            return "JSOP_IN";
+        
+            
+//JSOP_INSTANCEOF 
+            case 114:
+                
+            return "JSOP_INSTANCEOF";
+        
+            
+//JSOP_TYPEOF 
+            case 39:
+                
+            return "JSOP_TYPEOF";
+        
+            
+//JSOP_TYPEOFEXPR 
+            case 197:
+                
+            return "JSOP_TYPEOFEXPR";
+        
+            
+//JSOP_VOID 
+            case 40:
+                
+            return "JSOP_VOID";
+        
+            
+//JSOP_DUP 
+            case 12:
+                
+            return "JSOP_DUP";
+        
+            
+//JSOP_DUP2 
+            case 13:
+                
+            return "JSOP_DUP2";
+        
+            
+//JSOP_DUPAT 
+            case 44:
+                
+            return "JSOP_DUPAT";
+        
+            
+//JSOP_PICK 
+            case 133:
+                
+            return "JSOP_PICK";
+        
+            
+//JSOP_POP 
+            case 81:
+                
+            return "JSOP_POP";
+        
+            
+//JSOP_POPN 
+            case 11:
+                
+            return "JSOP_POPN";
+        
+            
+//JSOP_SWAP 
+            case 10:
+                
+            return "JSOP_SWAP";
+        
+            
+//JSOP_DOUBLE 
+            case 60:
+                
+            return "JSOP_DOUBLE";
+        
+            
+//JSOP_TRUE 
+                case 67:
+                    
+            return "JSOP_TRUE";
+            
+                
+//JSOP_INT32 
+            case 216:
+                
+            return "JSOP_INT32";
+        
+            
+//JSOP_INT8 
+            case 215:
+                
+            return "JSOP_INT8";
+        
+            
+//JSOP_NULL 
+            case 64:
+                
+            return "JSOP_NULL";
+        
+            
+//JSOP_ONE 
+            case 63:
+                
+            return "JSOP_ONE";
+        
+            
+//JSOP_STRING 
+            case 61:
+                
+            return "JSOP_STRING";
+        
+            
+//JSOP_UINT16 
+            case 88:
+                
+            return "JSOP_UINT16";
+        
+            
+//JSOP_UINT24 
+            case 188:
+                
+            return "JSOP_UINT24";
+        
+            
+//JSOP_UNDEFINED 
+            case 1:
+                
+            return "JSOP_UNDEFINED";
+        
+            
+//JSOP_ZERO 
+            case 62:
+                
+            return "JSOP_ZERO";
+        
+            
+//JSOP_CALLELEM 
+            case 193:
+                
+            return "JSOP_CALLELEM";
+        
+            
+//JSOP_CALLPROP 
+            case 184:
+                
+            return "JSOP_CALLPROP";
+        
+            
+//JSOP_DELELEM 
+            case 38:
+                
+            return "JSOP_DELELEM";
+        
+            
+//JSOP_DELPROP 
+            case 37:
+                
+            return "JSOP_DELPROP";
+        
+            
+//JSOP_ENDINIT 
+            case 92:
+                
+            return "JSOP_ENDINIT";
+        
+            
+//JSOP_GETELEM 
+            case 55:
+                
+            return "JSOP_GETELEM";
+        
+            
+//JSOP_GETPROP 
+            case 53:
+                
+            return "JSOP_GETPROP";
+        
+            
+//JSOP_GETXPROP 
+            case 195:
+                
+            return "JSOP_GETXPROP";
+        
+            
+//JSOP_INITELEM 
+            case 94:
+                
+            return "JSOP_INITELEM";
+        
+            
+//JSOP_INITELEM_GETTER 
+            case 99:
+                
+            return "JSOP_INITELEM_GETTER";
+        
+            
+//JSOP_INITELEM_SETTER 
+            case 100:
+                
+            return "JSOP_INITELEM_SETTER";
+        
+            
+//JSOP_INITPROP 
+            case 93:
+                
+            return "JSOP_INITPROP";
+        
+            
+//JSOP_INITPROP_GETTER 
+            case 97:
+                
+            return "JSOP_INITPROP_GETTER";
+        
+            
+//JSOP_INITPROP_SETTER 
+            case 98:
+                
+            return "JSOP_INITPROP_SETTER";
+        
+            
+//JSOP_MUTATEPROTO 
+            case 194:
+                
+            return "JSOP_MUTATEPROTO";
+        
+            
+//JSOP_NEWINIT 
+            case 89:
+                
+            return "JSOP_NEWINIT";
+        
+            
+//JSOP_NEWOBJECT 
+            case 91:
+                
+            return "JSOP_NEWOBJECT";
+        
+            
+//JSOP_OBJECT 
+            case 80:
+                
+            return "JSOP_OBJECT";
+        
+            
+//JSOP_SETELEM 
+            case 56:
+                
+            return "JSOP_SETELEM";
+        
+            
+//JSOP_SETPROP 
+            case 54:
+                
+            return "JSOP_SETPROP";
+        
+            
+//JSOP_TOID 
+            case 225:
+                
+            return "JSOP_TOID";
+        
+            
+//JSOP_ARRAYPUSH 
+            case 204:
+                
+            return "JSOP_ARRAYPUSH";
+        
+            
+//JSOP_HOLE 
+            case 218:
+                
+            return "JSOP_HOLE";
+        
+            
+//JSOP_INITELEM_ARRAY 
+            case 96:
+                
+            return "JSOP_INITELEM_ARRAY";
+        
+            
+//JSOP_INITELEM_INC 
+            case 95:
+                
+            return "JSOP_INITELEM_INC";
+        
+            
+//JSOP_LENGTH 
+            case 217:
+                
+            return "JSOP_LENGTH";
+        
+            
+//JSOP_NEWARRAY 
+            case 90:
+                
+            return "JSOP_NEWARRAY";
+        
+            
+//JSOP_REGEXP 
+            case 160:
+                
+            return "JSOP_REGEXP";
+        
+            
+//JSOP_LINENO 
+            case 119:
+                
+            return "JSOP_LINENO";
+        
+            
+//JSOP_NOP 
+            case 0:
+                
+            return "JSOP_NOP";
+        
+            
+//JSOP_TOSTRING 
+            case 228:
+                
+            return "JSOP_TOSTRING";
+        
+            
+
+    
+        
+
+    }
+    return "";
+    
+}
+
+typedef struct (int size)
+{
+    
+    local int64 current_address =FTell();
+    local int64 endAddress =current_address+size;
+    
+    Printf( "current_address %x endAddress %x \n",current_address,endAddress);
+    local ubyte mopcode;
+    while(FTell()<endAddress)
+    {
+        
+        JSOP one(mopcode);
+        
+    }
+
+
+    //ubyte code[size];
+
+}CODE<optimize=false>;
+
+
+
+
+typedef struct {
+    
+    int classk;
+
+    switch( classk ) 
+    {
+        case CK_JSFunction  : 
+        {
+         int funEnclosingScopeIndex;
+            int firstword;
+            if(firstword==1)
+            {
+                
+                int functionNamelength;
+                char functionName[functionNamelength>>1];
+        
+            }
+            
+                int flagword;
+                short nargs;
+                short nblocklocals;
+                int nvars;
+                int length;
+                int prologLength;
+                int version;
+                int natoms;
+                int nsrcnotes;
+                int nconsts;
+                int nobjects;
+                int nregexps;
+                int ntrynotes;
+                int nblockscopes;
+                int nTypeSets;
+                int funLength;
+                int scriptBits;
+        
+                if(nargs>0)
+                {
+                    atom args[nargs];
+                }
+                if(nvars>0)
+                {
+                    atom localvars[nvars];
+
+                }
+                if(nvars+nargs)
+                {
+                     ubyte kinds[nvars+nargs];        
+                }
+
+                
+                int sourceStart_;
+                int sourceEnd_;
+                int lineno;
+                int column;
+                int nslots;
+                int staticLevel;
+                CODE code(length);
+                ubyte srcnotes[nsrcnotes];
+                if(natoms>0)
+                {
+                    atom atoms[natoms];
+                }
+    
+                if(nconsts>0)
+                {
+                    _const consts[nconsts];
+                    
+                }
+                if(nobjects >0)
+                {
+                    NewObject(nobjects);
+                }
+                if(nregexps >0)
+                {
+
+                    RegExp regexps[nregexps];
+                    
+    
+                }
+                if(ntrynotes>0)
+                {
+                    trynote trynotes[ntrynotes];
+                }
+             
+            break;
+               
+        }
+      
+      
+    }
+
+    
+    
+    
+   
+
+}object <optimize=false,read=ObjectRead>;
+
+
+
+
+string ObjectRead(object & m)
+{
+    local string s="";
+    if(m.firstword==1)
+    {
+        s = m.functionName;
+    }
+    return s;
+}
+int NewObject(int num) {
+   object objects[num];
+    return 0;
+}
+
+
+typedef struct {
+short nargs;
+short nblocklocals;
+int nvars;
+int length;
+int prologLength;
+int version;
+int natoms;
+int nsrcnotes;
+int nconsts;
+int nobjects;
+int nregexps;
+int ntrynotes;
+int nblockscopes;
+int nTypeSets;
+int funLength;
+int scriptBits;
+ubyte hasSource;
+ubyte retrievable;
+if(hasSource&&! retrievable)
+{
+    int length_;
+    int compressedLength;
+    ubyte argumentsNotIncluded;
+    if(compressedLength!=0)
+    {
+        ubyte sourcecode[compressedLength];
+    }else
+    {
+        ubyte sourcecode[length_*2];
+    }
+
+}
+ubyte haveSourceMap;
+ubyte haveDisplayURL;
+ubyte haveFilename;
+string ScriptName;
+int sourceStart_;
+int sourceEnd_;
+int lineno;
+int column;
+int nslots;
+int staticLevel;
+CODE code(length);
+ubyte srcnotes[nsrcnotes];
+if(natoms>0)
+{
+    atom sciptAtoms[natoms];
+}
+if(nconsts>0)
+{
+    _const consts[nconsts];
+}
+    
+if(nobjects>0)
+{
+    object objects[nobjects];
+}
+
+} script_info;
+
+
+
+if(ReadUInt()==0xb973c02c)
+{
+    Printf( "------------start--------------\n");
+    jsc_magic header ;
+    script_info sciptInfo;
+    
+    
+}else
+{
+  Printf( "this is not jsc file");
+}
+
+
+
+
