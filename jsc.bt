@@ -206,7 +206,7 @@ typedef struct (ubyte _opcode)
             case 70:
                 {
             int32 len;
-            ubyte othre[len];
+            ubyte othre[len-4];
         break;
         }
             
@@ -2035,7 +2035,7 @@ typedef struct (int size)
         JSOP one(mopcode);
         
     }
-
+    Printf( "FTell() %x endAddress %x \n",FTell(),endAddress);
 
     //ubyte code[size];
 
